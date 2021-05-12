@@ -24,6 +24,21 @@ plt.savefig('mygraph.png', dpi=100)  # LQ
 plt.savefig('mygraph.eps', format='eps', dpi=300)  # HQ
 plt.show()
 
+# Subplots
+x = np.array([0,1,2,3,4])
+y = 2*x
+
+plt.subplot(2, 2, 1) #(nrow, ncol, index)
+plt.plot(x, y, 'red')
+plt.subplot(2, 2, 2)
+plt.plot(x, y, 'blue')
+plt.subplot(2, 2, 3)
+plt.plot(x, y, 'green')
+plt.subplot(2, 2, 4)
+plt.plot(x, y, 'yellow')
+
+plt.show()
+
 # Fifa 21 Player Rankings
 fifa = pd.read_csv('fifa21.csv')
 
