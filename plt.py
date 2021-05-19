@@ -69,3 +69,37 @@ plt.ylabel('Frequency')
 plt.title('Histogram of player overalls')
 
 plt.show()
+
+# How many nations are there?
+print(fifa['nationality'].value_counts())
+# How to put all English players in one variable
+England = fifa.loc[fifa['nationality'] == 'England']
+print(len(England))
+
+# Sections (countries) of the pie chart
+nations = ['England', 'Spain','Germany', 'France']
+counts = []
+
+# Appending number of players in fifa21 for each country in nations
+for i in range(len(nations)):
+    counts.append(len(fifa.loc[fifa['nationality'] == nations[i]]))
+
+# print(counts)
+nations.append('others')
+counts.append(len(fifa) - sum(counts))
+for i in range(len(counts)):
+    print(f'{nations[i]}: {counts[i]}')
+
+# Pie Chart
+explode = [0.1, 0, 0, 0, 0]
+plt.pie(x=counts, explode=explode, labels=nations, autopct='%.1f')
+plt.show()
+
+# Players of 3 main leagues
+EPL = fifa.loc[fifa['league_name'] == 'English Premier League']['overall']
+ESP = fifa.loc[fifa['league_name'] == 'Spain Primera Division']['overall']
+ITA = fifa.loc[fifa['league_name'] == 'Italian Serie A']['overall']
+
+# Box Plot
+plt.boxplot([EPL, ESP, ITA], labels=['EPL','ESP','ITA'])
+plt.show()
